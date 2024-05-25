@@ -30,9 +30,9 @@ public class Data extends Thread{
             controlEven = dis.readInt();
             part = dis.readInt();
             System.out.println(sz + " " + controlEven + " " + part);
-//            if (!controlEvenParam()) {
-//                throw new Exception();
-//            }
+            if (!controlEvenParam()) {
+                throw new Exception();
+            }
         }
         catch (IOException e) {
             e.printStackTrace();
