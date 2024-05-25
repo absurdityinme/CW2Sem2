@@ -8,7 +8,10 @@ public class ImageReader {
         threadList.forEach(Data::start);
     }
 
-    public static void write(File file, List<Data> threadList) {
+    public static void writeAll(File file, List<Data> threadList) throws InterruptedException {
+        for (Data data : threadList) {
+            data.join();
+        }
         try (FileOutputStream fos = new FileOutputStream(file, true)) {
             for (int i = 0; i < threadList.toArray().length; ++i) {
                 fos.write(threadList.get(i).getData());
