@@ -29,7 +29,6 @@ public class Data extends Thread{
             dis.read(data); // read image data
             controlEven = dis.readInt();
             part = dis.readInt();
-            System.out.println(sz + " " + controlEven + " " + part);
             if (!controlEvenParam()) {
                 throw new Exception();
             }
