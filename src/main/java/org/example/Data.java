@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Comparator;
 
 @Getter
-public class Data extends Thread{
+public class Data extends Thread implements Comparable {
     private int sz; // размер блока данных
     private byte[] data; // данные с фрагментом картинки
     private int controlEven; // контрольное число четности
@@ -47,6 +47,12 @@ public class Data extends Thread{
             }
         }
         return (count % 2) == controlEven;
+    }
+    @Override
+    public int compareTo(Object o) {
+        if (part > ((Data) o).getPart()) return 1;
+        else if (part < ((Data) o).getPart()) return -1;
+        return 0;
     }
     // (b & (1 << 1)) >> 1
 }

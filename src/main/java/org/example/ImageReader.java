@@ -12,10 +12,15 @@ public class ImageReader {
         for (Data data : threadList) {
             data.join();
         }
+        threadList.sort((d1, d2) -> d1.compareTo(d2));
         try (FileOutputStream fos = new FileOutputStream(file, true)) {
-            for (int i = 0; i < threadList.toArray().length; ++i) {
-                fos.write(threadList.get(i).getData());
-            }
+            threadList.forEach(v -> {
+                try {
+                    fos.write(v.getData());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
         catch (IOException e) {
             e.printStackTrace();
